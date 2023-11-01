@@ -47,7 +47,17 @@ void ledControl(int channel, enum State currentState){
                     break;                 
             }         
 }
-
+void endState(int last, int second, int first){
+        ledControl(last, OFF);
+        ledControl(second, QUARTER);
+        ledControl(first, HALF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(second, OFF);
+        ledControl(first, QUARTER);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(first, OFF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+}
 void app_main(void)
 {
     //-------------ADC1 Init---------------//
@@ -157,7 +167,6 @@ void app_main(void)
             ledControl(i, FULL);
         }
         
-
         for(int i = 0; i < 5; i++){
             ledControl(hodnoty[i], FULL);
             ledControl(hodnotyBack[i],THREE_QUARTER);
@@ -172,15 +181,7 @@ void app_main(void)
             }
             vTaskDelay(pdMS_TO_TICKS(100));
         }
-        ledControl(2, OFF);
-        ledControl(3, QUARTER);
-        ledControl(4, HALF);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        ledControl(3, OFF);
-        ledControl(4, QUARTER);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        ledControl(4, OFF);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        endState(2,3,4);
         
         for(int i = 4; i > -1; i--){
             ledControl(hodnotyBack[i], FULL);
@@ -196,15 +197,6 @@ void app_main(void)
             }
             vTaskDelay(pdMS_TO_TICKS(100));
         }
-        ledControl(5, OFF);
-        ledControl(4, QUARTER);
-        ledControl(3, HALF);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        ledControl(4, OFF);
-        ledControl(3, QUARTER);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        ledControl(3, OFF);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        
+        endState(5,4,3);
      }
     }
