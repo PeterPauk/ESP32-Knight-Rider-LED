@@ -156,7 +156,7 @@ void app_main(void)
         for(int i = 0; i < 3; i++){
             ledControl(i, FULL);
         }
-        vTaskDelay(pdMS_TO_TICKS(100));
+        
 
         for(int i = 0; i < 5; i++){
             ledControl(hodnoty[i], FULL);
@@ -172,10 +172,16 @@ void app_main(void)
             }
             vTaskDelay(pdMS_TO_TICKS(100));
         }
-        for(int i = 2; i < 5; i++){
-            ledControl(i, OFF);
-            vTaskDelay(pdMS_TO_TICKS(100));
-        }
+        ledControl(2, OFF);
+        ledControl(3, QUARTER);
+        ledControl(4, HALF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(3, OFF);
+        ledControl(4, QUARTER);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(4, OFF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        
         for(int i = 4; i > -1; i--){
             ledControl(hodnotyBack[i], FULL);
             ledControl(hodnoty[i], THREE_QUARTER);
@@ -190,9 +196,15 @@ void app_main(void)
             }
             vTaskDelay(pdMS_TO_TICKS(100));
         }
-        for(int i = 5; i > 2; i--){
-            ledControl(i, OFF);
-            vTaskDelay(pdMS_TO_TICKS(100));
-        }
+        ledControl(5, OFF);
+        ledControl(4, QUARTER);
+        ledControl(3, HALF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(4, OFF);
+        ledControl(3, QUARTER);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        ledControl(3, OFF);
+        vTaskDelay(pdMS_TO_TICKS(100));
+        
      }
     }
